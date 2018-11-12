@@ -9,9 +9,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - javascript-dependencies-{{ .Branch }}
-            - javascript-dependencies-{{ checksum "package-lock.json" }}
-            - javascript-dependencies
+            - javascript-dependencies-{{ checksum "index.html" }}
       - run:
           name: Install dependencies
           command: npm install
@@ -22,7 +20,7 @@ jobs:
           paths:
             - node_modules
             - dist
-          key: javascript-dependencies-{{ .Branch }}
+          key: javascript-dependencies-{{ checksum "index.html" }}
 
   deploy:
     docker:
@@ -32,7 +30,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - javascript-dependencies-{{ .Branch }}
+            - javascript-dependencies-{{ checksum "index.html" }}
 
       - run:
           name: Config Github user
