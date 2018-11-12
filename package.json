@@ -1,0 +1,23 @@
+{
+  "name": "snake",
+  "version": "1.0.0",
+  "description": "Snake game",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "keywords": [
+    "Snake",
+    "snake",
+    "js"
+  ],
+  "author": "Igor Bezsmertnyi <bezsmertnyi.igor@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "^1.0.1",
+    "stylus-loader": "^3.0.2"
+  },
+  "devDependencies": {
+    "stylus": "^0.54.5"
+  }
+}

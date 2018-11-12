@@ -1,0 +1,94 @@
+.canvas
+  box-shadow 1px 1px 107px 0px rgba(70, 80, 255, .4)
+  animation area-glow infinite ease-in 2.8s
+  
+.score
+  position fixed
+  width calc(((100vw - 100vh) / 2) - 48px)
+  padding 24px
+  left 0
+
+  &__logo
+    text-align center
+    color #4666FF
+    font-size 4em
+    font-family 'Knewave', cursive
+    margin-top 12px
+    text-shadow 4px 4px 107px rgba(70, 80, 255, .8)
+
+  &__score
+    color #fff
+    font-size 1.4em
+    font-family 'Press Start 2P', cursive
+    text-transform uppercase
+  
+.results
+  margin 80px 0 0
+  color #fff
+  font-size 1.4em
+  font-family 'Press Start 2P', cursive
+  text-transform uppercase
+
+  &__list
+    list-style none
+    padding 0
+    margin 32px 0 0
+  
+  &__item
+    margin-bottom 20px
+
+.controlls
+  position fixed
+  width calc(((100vw - 100vh) / 2) - 48px)
+  height 100vh
+  right 0
+  padding 24px
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+
+  &__btn
+    border 0
+    outline 0
+    background transparent
+    color #fff
+    font-size 1.4em
+    font-family 'Press Start 2P', cursive
+    text-transform uppercase
+    margin 20px 0
+    cursor pointer
+
+    &:hover
+      animation blik-button infinite ease-in .5s
+    
+    &--active
+      animation blik-button infinite ease-in .5s
+
+.start-screen
+  position absolute
+  width 100vh
+  height 100vh
+  left 0
+  right 0
+  margin 0 auto
+  display flex
+  justify-content center
+  align-items: center
+
+  &__logo
+    margin 0
+    text-align center
+    color #4666FF
+    font-size 10em
+    font-family 'Knewave', cursive
+    margin-top 12px
+    text-shadow 4px 4px 107px rgba(70, 80, 255, .8)
+    animation text-flicker infinite ease-in 2.8s
+
+.modal
+  position absolute
+  display none
+
+.hide
+  display none

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Knewave|Press+Start+2P" rel="stylesheet">
+    <title>Snake</title>
+    <script src = "./index.js"> </script>
+  </head>
+  <body>
+    <main class="main">
+      <div class="score">
+        <h1 class="score__logo">Snake</h1>
+  
+        <p id="score" class="score__score">
+          score: 0
+        </p>
+  
+        <div class="results">
+          <p>Your results:</p>
+  
+          <ul id="results" class="results__list"></ul>
+        </div>
+      </div>
+
+      <canvas id="area" class="canvas"></canvas>
+
+      <div id="startScreen" class="start-screen">
+        <p class="start-screen__logo">Snake</p>
+      </div>
+
+      <div class="controlls">
+        <button id="startButton" class="controlls__btn" type="button">
+          Start
+        </button>
+
+        <button id="newGameButton" class="controlls__btn hide" type="button">
+          New Game
+        </button>
+
+        <button id="pauseButton" class="controlls__btn hide" type="button">
+          Pause
+        </button>
+
+        <button id="resumeButton" class="controlls__btn hide" type="button">
+          Resume
+        </button>
+
+        <button id="scoreListButton" class="controlls__btn hide" type="button">
+          Score List
+        </button>
+      </div>
+      
+      <div class="modal">
+        <div class="modal__content">
+          <p id="modalTitle" class="modal__title"></p>
+
+          <button id="btnContinue" class="modal__button modal__button--hidden" type="button">
+            Continue
+          </button>
+
+          <button id="btnContinue" class="modal__button modal__button--hidden" type="button">
+            Start
+          </button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
