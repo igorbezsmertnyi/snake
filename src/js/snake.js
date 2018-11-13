@@ -1,5 +1,6 @@
 import updateScore from './updateScore'
 import saveScore from './savaScore'
+import getResults from './getResults'
 
 export default class Snake {
   constructor() {
@@ -154,6 +155,7 @@ export default class Snake {
       this.crashed = true
 
       saveScore(this.score)
+      getResults()
     }
 
     this.snake.tail.slice(1, this.snake.tail.length).forEach(item => {
@@ -162,17 +164,29 @@ export default class Snake {
         this.crashed = true
 
         saveScore(this.score)
+        getResults()
       }
     })
 
     if (this.snake.x === this.food.x && this.snake.y === this.food.y) {
       this.snake.tail.push({ x: this.food.x, y: this.food.y })
 
-      this.food.x = this.randomPosition(this.GRID_SIZE, this.AREA_WIDTH - 2 * this.GRID_SIZE)
-      this.food.y = this.randomPosition(this.GRID_SIZE, this.AREA_HEIGHT - 2 * this.GRID_SIZE)
+      this.food.x = this.newFoodPosition('x')
+      this.food.y = this.newFoodPosition('y')
 
       updateScore(this.score += 10)
     }
+  }
+
+  newFoodPosition(postiionFor) {
+    const coorList = this.snake.tail.map(t => t[postiionFor])
+    let pos = this.randomPosition(this.GRID_SIZE, this.AREA_WIDTH - 2 * this.GRID_SIZE)
+
+    while (coorList.includes(pos)) {
+      pos = this.randomPosition(this.GRID_SIZE, this.AREA_WIDTH - 2 * this.GRID_SIZE)
+    }
+
+    return pos
   }
 
   changeDirectionListener() {
@@ -232,7 +246,7 @@ export default class Snake {
   }
 
   fillArea() {
-    this.ctx.lineWidth = 10
+    this.ctx.lineWidth = 26
     this.ctx.strokeStyle = '#4666FF'
     this.ctx.fillStyle = '#000'
     this.ctx.fillRect(0, 0, this.AREA_WIDTH, this.AREA_HEIGHT)

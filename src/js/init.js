@@ -1,4 +1,5 @@
 import Snake from './snake'
+
 export default () => {
   const startBtn = document.getElementById('startButton')
   const newGameBtn = document.getElementById('newGameButton')

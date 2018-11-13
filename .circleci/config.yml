@@ -26,14 +26,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - javascript-dependencies-{{ checksum "index.html" }}
+            - javascript-dependencies-{{ checksum "yarn.lock" }}
       - run:
           name: Build project
           command: npm run build
       - save_cache:
           paths:
             - dist
-          key: javascript-dependencies-{{ checksum "index.html" }}
+          key: static-assets-{{ checksum "index.html" }}
 
   deploy:
     docker:
@@ -43,9 +43,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - javascript-dependencies-{{ checksum "index.html" }}
-            - javascript-dependencies-{{ checksum "yarn.lock" }}
-
+            - static-assets-{{ checksum "index.html" }}
       - run:
           name: Config Github user
           command: |
