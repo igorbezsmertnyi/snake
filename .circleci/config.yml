@@ -1,6 +1,23 @@
 version: 2.1
 
 jobs:
+  install:
+    docker:
+      - image: circleci/node:8.10
+    working_directory: ~/snake
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - javascript-dependencies-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install dependencies
+          command: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: javascript-dependencies-{{ checksum "yarn.lock" }}
+
   build:
     docker:
       - image: circleci/node:8.10
@@ -11,14 +28,10 @@ jobs:
           keys:
             - javascript-dependencies-{{ checksum "index.html" }}
       - run:
-          name: Install dependencies
-          command: npm install
-      - run:
           name: Build project
           command: npm run build
       - save_cache:
           paths:
-            - node_modules
             - dist
           key: javascript-dependencies-{{ checksum "index.html" }}
 
@@ -31,6 +44,7 @@ jobs:
       - restore_cache:
           keys:
             - javascript-dependencies-{{ checksum "index.html" }}
+            - javascript-dependencies-{{ checksum "yarn.lock" }}
 
       - run:
           name: Config Github user
@@ -53,10 +67,16 @@ jobs:
 workflows:
   main:
     jobs:
+      - install:
+          filters:
+            branches:
+              only: master
       - build:
           filters:
             branches:
               only: master
+          requires:
+            - install
       - deploy:
           filters:
             branches:
